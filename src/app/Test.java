@@ -29,40 +29,47 @@ public class Test {
         options.addArguments("disable-infobars");
         try{
         WebDriver driver = new ChromeDriver(options);
-        //driver.get("https://www.facebook.com");
-        //driver.get("https://www.shoes.com/cart/cart");
-        driver.get("https://www.shoes.com/comfort-shop-under-$25.htm");
+        
+        driver.get("https://www.shoes.com/prana-printed-double-headband/634345/1827327");
         try{
-  //      WebElement username = driver.findElement(By.name("email"));
+            
+          WebElement button = driver.findElement(By.id("add-cart"));
+          button.click();
+
+          WebElement buttonCheckout = driver.findElement(By.className("crt-proceed-btn"));
+          
+          buttonCheckout.click();
+          
+//        WebElement username = driver.findElement(By.name("email"));
 //        WebElement password = driver.findElement(By.name("pass"));
         
-        WebElement button = driver.findElement(By.id("quick_shop_btn_35"));
-        
-        button.click();
-        WebElement botonAgregar = driver.findElement(By.className("qv-add-to-cart"));
-        botonAgregar.click();
-        
-        driver.get("https://www.shoes.com/cart/cart");
-//        WebElement text = driver.findElement(By.name("Search"));
-//        text.sendKeys("Suck me my dick!");
-        
-        /**
-         * Chequeamos la compra
-         */
-        WebElement botonChequear = driver.findElement(By.className("crt-proceed-btn"));
-        botonChequear.click();
-        
-        driver.get("https://www.shoes.com/cart/checkout");
-        //WebElement txtEmail = driver.findElement(By.className("sb-text-input"));
-        WebElement txtEmail = driver.findElement(By.name("guestEmail"));
-        //WebElement txtEmail = driver.findElement(By.xpath("//*[@id=\"checkout\"]/div[8]/div[1]/section/div[2]/div[1]/div[1]/div[1]/div[2]/div/div/div/form/div/div/input"));
-        
-        txtEmail.sendKeys("luisalgonsa1x123@gmail.com");
-        
-        
-        WebElement botonEnviarEmail = driver.findElement(By.className("sb-vert-inner"));
-        botonEnviarEmail.click();
-        
+//        WebElement button = driver.findElement(By.id("quick_shop_btn_35"));
+//        
+//        button.click();
+//        WebElement botonAgregar = driver.findElement(By.className("qv-add-to-cart"));
+//        botonAgregar.click();
+//        
+//        driver.get("https://www.shoes.com/cart/cart");
+////        WebElement text = driver.findElement(By.name("Search"));
+////        text.sendKeys("Suck me my dick!");
+//        
+//        /**
+//         * Chequeamos la compra
+//         */
+//        WebElement botonChequear = driver.findElement(By.className("crt-proceed-btn"));
+//        botonChequear.click();
+//        
+//        driver.get("https://www.shoes.com/cart/checkout");
+//        //WebElement txtEmail = driver.findElement(By.className("sb-text-input"));
+//        WebElement txtEmail = driver.findElement(By.name("guestEmail"));
+//        //WebElement txtEmail = driver.findElement(By.xpath("//*[@id=\"checkout\"]/div[8]/div[1]/section/div[2]/div[1]/div[1]/div[1]/div[2]/div/div/div/form/div/div/input"));
+//        
+//        txtEmail.sendKeys("luisalgonsa1x123@gmail.com");
+//        
+//        
+//        WebElement botonEnviarEmail = driver.findElement(By.className("sb-vert-inner"));
+//        botonEnviarEmail.click();
+//        
         
         /**
         * ----------- Para una chancla
