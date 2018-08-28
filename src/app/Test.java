@@ -30,17 +30,24 @@ public class Test {
         try{
         WebDriver driver = new ChromeDriver(options);
         
-        driver.get("https://www.shoes.com/prana-printed-double-headband/634345/1827327");
+        //driver.get("https://www.shoes.com/prana-printed-double-headband/634345/1827327");
+        driver.get("https://www.shoes.com/johnston-murphy-performance-loafer/614421/1262220");
+        
         try{
-            
+          //ACCEDER A LOS ELEMENTOS DEL DOM POR MEDIO DE SU ID O CLASE O NOMBRE         
           WebElement button = driver.findElement(By.id("add-cart"));
+          //DESPUÉS PUEDO USAR METODOS COMO EL CLICK
           button.click();
-
-          WebElement buttonCheckout = driver.findElement(By.className("crt-proceed-btn"));
           
+          Thread.sleep(2000);
+          WebElement buttonCheckout = driver.findElement(By.className("crt-proceed-btn"));
+                                                                    
           buttonCheckout.click();
           
-//        WebElement username = driver.findElement(By.name("email"));
+          //WebElement username = driver.findElement(By.name("guestEmail"));
+          WebElement username = driver.findElement(By.className("sb-text-input--full"));
+          
+          username.sendKeys("holamundo@gmail.com");
 //        WebElement password = driver.findElement(By.name("pass"));
         
 //        WebElement button = driver.findElement(By.id("quick_shop_btn_35"));
