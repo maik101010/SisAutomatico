@@ -36,7 +36,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  * @author Michael García A
  */
 public class formFichero extends javax.swing.JFrame {
-    
+
     String patch = "";
     String numeroBean = "";
     String numeroMes = "";
@@ -52,19 +52,19 @@ public class formFichero extends javax.swing.JFrame {
         initComponents();
         mostrarTabla("");
     }
-    
+
     private void mostrarTabla(String numero) {
 
         //ArrayList<Persona> ad = p.consultarPersona();
         DefaultTableModel miJTable = (DefaultTableModel) jTableTarjeta.getModel();
-        
+
         miJTable.setNumRows(i);
         i++;
         String dato[] = new String[1];
-        
+
         dato[0] = String.valueOf(numero);
         miJTable.addRow(dato);
-        
+
     }
 
     /**
@@ -213,40 +213,40 @@ public class formFichero extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSeleccionarActionPerformed
 
     private void btnRunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRunActionPerformed
-        //jTextArea1.append("Empezamos\n");
         System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
         ChromeOptions options = new ChromeOptions();
         options.addArguments("start-maximized");
         options.addArguments("disable-infobars");
-        
+
         WebDriver driver;
         try {
             driver = new ChromeDriver(options);
-            
+
             try {
+                /*
+                    Llamamos al metodo que recorre los componentes principales
+                 */
                 runAuto(driver);
-                
+
                 String cadena;
                 FileReader file = new FileReader(patch);
                 BufferedReader b = new BufferedReader(file);
-                
+
                 boolean valor = true;
                 do {
-                    
+
                     while ((cadena = b.readLine()) != null) {
-                        //jTextArea1.append(cadena);
-                        //jTextArea1.append("\n");
                         System.out.println(cadena);
-                        
+
                         for (int i = 0; i < cadena.length(); i++) {
                             numeroBean = cadena.substring(0, 16);
                             numeroMes = cadena.substring(17, 19);
                             numeroAnio = cadena.substring(20, 24);
-                            
+
                         }
                         totalContTarjetas++;
                         jLabelNumeroTarjetas.setText("Total tarjetas evaluadas: " + totalContTarjetas);
-                        
+
                         Thread.sleep(3000);
                         WebElement number = driver.findElement(By.name("number"));
                         number.sendKeys(numeroBean);
@@ -265,13 +265,16 @@ public class formFichero extends javax.swing.JFrame {
                         Thread.sleep(3000);
                         /*
                             Validamos que el elemento este visible y se haya cargado
-                         */
+                        */
 
                         //WebElement modal = (new WebDriverWait(driver, 20).until(ExpectedConditions.visibilityOfElementLocated(By.id("modal-generic-error"))));
                         WebElement modal = driver.findElement(By.id("modal-generic-error"));
                         System.out.println("Elemento modal error: " + modal.toString());
                         valor = modal.isDisplayed();
                         System.out.println("Valor modal: " + valor);
+                        /*
+                            Si el modal esta, cerrar y ejecutar los siguientes pasos para volver al bucle de las tarjetas
+                         */
                         if (valor) {
                             Thread.sleep(2000);
                             WebElement modalClose = driver.findElement(By.className("close"));
@@ -279,25 +282,27 @@ public class formFichero extends javax.swing.JFrame {
                             Thread.sleep(2000);
                             WebElement editeTarjet = (new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//A[@href='#'][text()='EDIT']/self::A"))));
                             editeTarjet.click();
-                            
+
                             Thread.sleep(2000);
                             WebElement addediteTarjet = driver.findElement(By.className("chk-pay-opt--new"));
                             addediteTarjet.click();
-                            
+
                             Thread.sleep(2000);
                             WebElement checkoutForm = driver.findElement(By.xpath("//INPUT[@class='chk-pay-match-addr']/self::INPUT"));
                             Thread.sleep(2000);
                             checkoutForm.click();
                             contTarjeta++;
 
-                            /*Para refrezcar la pagina*/
+                            /*
+                                Refrezcar la pagina después de 9 tarjetas
+                             */
                             if (contTarjeta > 9) {
                                 driver.navigate().refresh();
                                 System.out.println("----------Refrezcando navegador----------");
                                 Thread.sleep(4000);
                                 contTarjeta = 0;
                             }
-                            
+
                         } else {
                             Clip sonido = AudioSystem.getClip();
                             File a = new File("sonido.wav");
@@ -312,30 +317,35 @@ public class formFichero extends javax.swing.JFrame {
                             mostrarTabla(numeroBean);
                             driver.manage().deleteAllCookies();
                             Thread.sleep(4000);
+                            /*
+                                Llamamos al metodo que recorre los componentes principales
+                            */
                             runAuto(driver);
-                            
+
                         }
                     }
                     if (b.readLine() == null) {
                         JOptionPane.showMessageDialog(null, "Termino el archivo, por favor seleccione otro");
                         break;
-                        
+
                     }
                 } while (valor);
-                
+
             } catch (WebDriverException e) {
                 JOptionPane.showMessageDialog(null, "Excepcion dentro de los parametros tarjeta");
                 JOptionPane.showMessageDialog(null, e.getMessage());
-                
+
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Excepcion dentro del driver" + e.getMessage());
             JOptionPane.showMessageDialog(null, e.getStackTrace());
-            
+
         }
     }
-    //}
 
+    /*
+        Metodo que ejecuta todos los componentes principales de la pagina
+     */
     private static void runAuto(WebDriver driver) {
         try {
             driver.get("https://www.shoes.com/johnston-murphy-performance-loafer/614421/1262220");
@@ -368,36 +378,41 @@ public class formFichero extends javax.swing.JFrame {
             Thread.sleep(3000);
             WebElement firsName = driver.findElement(By.name("firstName"));
             firsName.sendKeys("Pepito");
-            
+
             WebElement lastName = driver.findElement(By.name("lastName"));
             lastName.sendKeys("Perez");
-            
+            /*
+                Se agregan las direcciones
+            */
+            String[] direcciones = {"Transilvania 45", "Manzana 2, casa 4", "Otra direccion", "Super manzana 1", "Super dos", "Avenida siempre viva 12222", "Otra direccion rara", "Carrera 123 avenida 2", "Carrera 344 casa1", "avenida 234 carrera 4"};
+            int direccion = aleatorio.nextInt(10);
             WebElement address1 = driver.findElement(By.name("address1"));
-            address1.sendKeys("Ninguna");
-            
+            address1.sendKeys(direcciones[direccion]);
+
             WebElement address2 = driver.findElement(By.name("address2"));
-            address2.sendKeys("Ninguna");
-            
+            address2.sendKeys(direcciones[direccion]);
+
             WebElement city = driver.findElement(By.name("city"));
             city.sendKeys("San diego");
-            
+
             WebElement stateProvince = driver.findElement(By.name("stateProvince"));
             Select selectState = new Select(stateProvince);
             selectState.selectByValue("CA");
-            
+
             WebElement postalCode = driver.findElement(By.name("postalCode"));
             postalCode.sendKeys("90001");
-            
+
             WebElement phoneNumber = driver.findElement(By.name("phoneNumber"));
-            phoneNumber.sendKeys("1234119381");
             
+            phoneNumber.sendKeys("12341"+direccion+"9381");
+
             phoneNumber.sendKeys(Keys.ENTER);
             Thread.sleep(3000);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Excepcion dentro de los parametros formulario " + e.getMessage());
             JOptionPane.showMessageDialog(null, e.getLocalizedMessage());
         }
-        
+
 
     }//GEN-LAST:event_btnRunActionPerformed
 
@@ -425,12 +440,12 @@ public class formFichero extends javax.swing.JFrame {
             /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
             * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
              */
-            
+
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-                    
+
                 }
             }
         } catch (ClassNotFoundException ex) {
@@ -445,7 +460,7 @@ public class formFichero extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new formFichero().setVisible(true);
-                
+
             }
         });
     }
