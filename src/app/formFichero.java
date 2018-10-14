@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package app;
 
 import java.awt.Color;
@@ -305,7 +300,7 @@ public class formFichero extends javax.swing.JFrame {
 
                         } else {
                             Clip sonido = AudioSystem.getClip();
-                            File a = new File("sonido.wav");
+                            File a = new File("sonidoburro.wav");
                             sonido.open(AudioSystem.getAudioInputStream(a));
                             sonido.start();
                             Thread.sleep(2000);
@@ -384,13 +379,13 @@ public class formFichero extends javax.swing.JFrame {
             /*
                 Se agregan las direcciones
             */
-            String[] direcciones = {"Transilvania 45", "Manzana 2, casa 4", "Otra direccion", "Super manzana 1", "Super dos", "Avenida siempre viva 12222", "Otra direccion rara", "Carrera 123 avenida 2", "Carrera 344 casa1", "avenida 234 carrera 4"};
+            //String[] direcciones = {"Transilvania 45", "Manzana 2, casa 4", "Otra direccion", "Super manzana 1", "Super dos", "Avenida siempre viva 12222", "Otra direccion rara", "Carrera 123 avenida 2", "Carrera 344 casa1", "avenida 234 carrera 4"};
             int direccion = aleatorio.nextInt(10);
             WebElement address1 = driver.findElement(By.name("address1"));
-            address1.sendKeys(direcciones[direccion]);
+            address1.sendKeys("Ninguna 1");
 
             WebElement address2 = driver.findElement(By.name("address2"));
-            address2.sendKeys(direcciones[direccion]);
+            address2.sendKeys("Ninguna 2");
 
             WebElement city = driver.findElement(By.name("city"));
             city.sendKeys("San diego");
