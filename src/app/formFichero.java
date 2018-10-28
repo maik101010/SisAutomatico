@@ -17,6 +17,7 @@ import javax.sound.sampled.Clip;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.table.DefaultTableModel;
@@ -33,8 +34,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
  *
- * @author Michael García A
+ *
  */
+
+
 public class formFichero extends javax.swing.JFrame {
 
     String patch = "";
@@ -44,12 +47,15 @@ public class formFichero extends javax.swing.JFrame {
     int i = 0;
     int contTarjeta = 0;
     int totalContTarjetas = 0;
+    
 
     /**
      * Creates new form formFichero
      */
     public formFichero() {
         initComponents();
+        EVENTOS.setText("Esperando al usuario");
+        this.setLocationRelativeTo(null);
         mostrarTabla("");
     }
 
@@ -76,81 +82,33 @@ public class formFichero extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        btnRun = new javax.swing.JButton();
-        btnSeleccionar = new javax.swing.JButton();
-        jLabel = new javax.swing.JLabel();
-        btnRun1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableTarjeta = new javax.swing.JTable();
-        jLabelNumeroTarjetas = new javax.swing.JLabel();
+        btnRun1 = new javax.swing.JButton();
+        btnSeleccionar = new javax.swing.JButton();
+        avance = new javax.swing.JTextArea();
+        btnRun = new javax.swing.JButton();
+        EVENTOS = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        CONTADOR = new javax.swing.JLabel();
+        jLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(102, 102, 102));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setUndecorated(true);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
-
-        btnRun.setBackground(new java.awt.Color(255, 255, 255));
-        btnRun.setFont(new java.awt.Font("Rockwell", 1, 14)); // NOI18N
-        btnRun.setText("Run");
-        btnRun.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRunActionPerformed(evt);
-            }
-        });
-
-        btnSeleccionar.setBackground(new java.awt.Color(255, 255, 255));
-        btnSeleccionar.setFont(new java.awt.Font("Rockwell", 1, 14)); // NOI18N
-        btnSeleccionar.setText("Seleccionar Archivo");
-        btnSeleccionar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSeleccionarActionPerformed(evt);
-            }
-        });
-
-        jLabel.setForeground(new java.awt.Color(51, 51, 255));
-
-        btnRun1.setBackground(new java.awt.Color(255, 255, 255));
-        btnRun1.setFont(new java.awt.Font("Rockwell", 1, 14)); // NOI18N
-        btnRun1.setText("Stop");
-        btnRun1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRun1ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(45, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnRun, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(16, 16, 16)
-                        .addComponent(btnRun1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(110, 110, 110)
-                        .addComponent(btnSeleccionar)))
-                .addGap(45, 45, 45))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnRun)
-                    .addComponent(btnSeleccionar)
-                    .addComponent(btnRun1))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(53, Short.MAX_VALUE))
-        );
-
+        jTableTarjeta.setOpaque(false);
+        jTableTarjeta.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jTableTarjeta.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
                 {null},
                 {null},
                 {null},
@@ -160,6 +118,7 @@ public class formFichero extends javax.swing.JFrame {
                 "Tarjeta"
             }
         ));
+        jTableTarjeta.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jTableTarjeta.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTableTarjetaMouseClicked(evt);
@@ -171,33 +130,67 @@ public class formFichero extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(jTableTarjeta);
+        if (jTableTarjeta.getColumnModel().getColumnCount() > 0) {
+            jTableTarjeta.getColumnModel().getColumn(0).setHeaderValue("Tarjeta");
+        }
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabelNumeroTarjetas, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabelNumeroTarjetas, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(28, Short.MAX_VALUE))
-        );
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 575, 170));
+
+        btnRun1.setBackground(new java.awt.Color(167, 41, 215));
+        btnRun1.setFont(new java.awt.Font("Rockwell", 1, 14)); // NOI18N
+        btnRun1.setText("Terminar");
+        btnRun1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRun1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnRun1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, 100, -1));
+
+        btnSeleccionar.setOpaque(true);
+        btnSeleccionar.setBackground(new java.awt.Color(255, 0, 0));
+        btnSeleccionar.setFont(new java.awt.Font("Rockwell", 1, 14)); // NOI18N
+        btnSeleccionar.setText("Seleccionar CCs");
+        btnSeleccionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSeleccionarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnSeleccionar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
+
+        avance.setBackground(new java.awt.Color(20, 96, 135));
+        avance.setColumns(20);
+        avance.setFont(new java.awt.Font("Monospaced", 3, 18)); // NOI18N
+        avance.setForeground(new java.awt.Color(255, 255, 255));
+        avance.setRows(5);
+        avance.setText("Bienvenido a MoonTeam Chkr");
+        getContentPane().add(avance, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 10, 300, 30));
+
+        btnRun.setBackground(new java.awt.Color(89, 29, 251));
+        btnRun.setFont(new java.awt.Font("Rockwell", 1, 14)); // NOI18N
+        btnRun.setText("Livea!");
+        btnRun.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRunActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnRun, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 93, -1));
+
+        EVENTOS.setFont(new java.awt.Font("Yu Gothic UI Semilight", 1, 14)); // NOI18N
+        EVENTOS.setForeground(new java.awt.Color(255, 255, 255));
+        getContentPane().add(EVENTOS, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, 310, 30));
+
+        jLabel1.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        jLabel1.setForeground(javax.swing.UIManager.getDefaults().getColor("textHighlightText"));
+        jLabel1.setText("Cantidad de tarjetas:");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 330, 130, 30));
+
+        CONTADOR.setFont(new java.awt.Font("Yu Gothic UI Semilight", 1, 14)); // NOI18N
+        CONTADOR.setForeground(new java.awt.Color(255, 255, 255));
+        getContentPane().add(CONTADOR, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 330, 60, 30));
+
+        jLabel.setForeground(new java.awt.Color(51, 51, 255));
+        jLabel.setIcon(new javax.swing.ImageIcon("C:\\Users\\USUARIO\\Pictures\\6190250-futuristic-wallpaper.png")); // NOI18N
+        getContentPane().add(jLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 595, 380));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -208,12 +201,15 @@ public class formFichero extends javax.swing.JFrame {
             buscaArchivo.showOpenDialog(buscaArchivo);
             patch = buscaArchivo.getSelectedFile().getAbsolutePath();
             jLabel.setText(patch);
+            EVENTOS.setText("Tarjetas Cargadas con éxito...");
         } catch (java.lang.NullPointerException e) {
             JOptionPane.showMessageDialog(null, "Error " + e.getMessage());
         }
     }//GEN-LAST:event_btnSeleccionarActionPerformed
 
     private void btnRunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRunActionPerformed
+        EVENTOS.setText("Procesando...");
+        
         System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
         ChromeOptions options = new ChromeOptions();
         options.addArguments("start-maximized");
@@ -222,6 +218,7 @@ public class formFichero extends javax.swing.JFrame {
         WebDriver driver;
         try {
             driver = new ChromeDriver(options);
+            
 
             try {
                 /*
@@ -234,6 +231,7 @@ public class formFichero extends javax.swing.JFrame {
                 BufferedReader b = new BufferedReader(file);
 
                 boolean valor = true;
+                
                 do {
 
                     while ((cadena = b.readLine()) != null) {
@@ -246,76 +244,102 @@ public class formFichero extends javax.swing.JFrame {
 
                         }
                         totalContTarjetas++;
-                        jLabelNumeroTarjetas.setText("Total tarjetas evaluadas: " + totalContTarjetas);
+                        //jLabelNumeroTarjetas.setText("Total tarjetas evaluadas: " + totalContTarjetas);
 
                         //Thread.sleep(3000);
-                        WebElement number = driver.findElement(By.name("number"));
-                        number.sendKeys(numeroBean);
-                        WebElement mes = driver.findElement(By.name("expMonth"));
+                        WebElement number = (new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated(By.name("number"))));
+                        //WebElement number = driver.findElement(By.name("number"));
+                        //EVENTOS.setText("Probado tarjeta" + numeroBean "|" + numeroMes "|" + numeroAnio "   InfChk");
+                        number.sendKeys(numeroBean); 
+                        WebElement mes = (new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated(By.name("expMonth"))));
+                        //WebElement mes = driver.findElement(By.name("expMonth"));
                         Select selectMes = new Select(mes);
                         selectMes.selectByValue(numeroMes);
-                        WebElement anio = driver.findElement(By.name("expYear"));
+                        WebElement anio = (new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated(By.name("expYear"))));
+                        //WebElement anio = driver.findElement(By.name("expYear"));
                         Select selectAnio = new Select(anio);
                         selectAnio.selectByValue(numeroAnio);
-                        Thread.sleep(1000);
+                        //Thread.sleep(1000);
                         number.sendKeys(Keys.ENTER);
-                        Thread.sleep(3000);
-                        //WebElement buttonCompra = driver.findElement(By.xpath("//BUTTON[@class='sb-button-1 sb-button-1--primary chk-proceed-btn right'][text()='Place Order'][text()='Place Order']/self::BUTTON"));
-                        WebElement buttonCompra = (new WebDriverWait(driver, 20).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//BUTTON[@class='sb-button-1 sb-button-1--primary chk-proceed-btn right'][text()='Place Order'][text()='Place Order']/self::BUTTON"))));
+                        Thread.sleep(2000);
+                        WebElement buttonCompra = driver.findElement(By.xpath("//BUTTON[@class='sb-button-1 sb-button-1--primary chk-proceed-btn right'][text()='Place Order'][text()='Place Order']/self::BUTTON"));
+                        //WebElement buttonCompra = (new WebDriverWait(driver, 20).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//BUTTON[@class='sb-button-1 sb-button-1--primary chk-proceed-btn right'][text()='Place Order'][text()='Place Order']/self::BUTTON"))));
                         buttonCompra.click();
-                        Thread.sleep(4000);
+                        //Thread.sleep(3000);
                         /*
                             Validamos que el elemento este visible y se haya cargado
                         */
 
                         //WebElement modal = (new WebDriverWait(driver, 20).until(ExpectedConditions.visibilityOfElementLocated(By.id("modal-generic-error"))));
-                        WebElement modal = driver.findElement(By.id("modal-generic-error"));
-                        System.out.println("Elemento modal error: " + modal.toString());
+                        driver.findElement(By.id("modal-generic-error")).isDisplayed(); 
+                        
+                        WebElement modal = (new WebDriverWait(driver, 20).until(ExpectedConditions.visibilityOfElementLocated(By.id("modal-generic-error"))));                                   
+                        //WebElement modal = driver.findElement(By.id("modal-generic-error"));                        
+                        System.out.println("Elemento modal error: " + modal.toString());                        
                         valor = modal.isDisplayed();
+                        //WebElement comprapasa = driver.findElement(By.className("sb-orange"));
                         System.out.println("Valor modal: " + valor);
                         /*
                             Si el modal esta, cerrar y ejecutar los siguientes pasos para volver al bucle de las tarjetas
                          */
+                        
                         if (valor) {
-                            Thread.sleep(3000);
-                            WebElement modalClose = driver.findElement(By.className("close"));
+                            //Thread.sleep(3000);
+                            
+                            WebElement modalClose = (new WebDriverWait(driver, 20).until(ExpectedConditions.visibilityOfElementLocated(By.className("close"))));
+                            //WebElement modalClose = driver.findElement(By.className("close"));
                             modalClose.click();
-                            Thread.sleep(2000);
+                            //Thread.sleep(500);                            
                             WebElement editeTarjet = (new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//A[@href='#'][text()='EDIT']/self::A"))));
                             editeTarjet.click();
 
-                            Thread.sleep(2000);
-                            WebElement addediteTarjet = driver.findElement(By.className("chk-pay-opt--new"));
+                            //Thread.sleep(1000);
+                            /*
+                            //WebElement addediteTarjet = driver.findElement(By.className("chk-plus-label")); */
+                            WebElement addediteTarjet = (new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated(By.className("chk-pay-opt--new"))));
+                            //WebElement addediteTarjet = driver.findElement(By.className("chk-pay-opt--new"));                            
                             addediteTarjet.click();
 
-                            Thread.sleep(2000);
-                            WebElement checkoutForm = driver.findElement(By.xpath("//INPUT[@class='chk-pay-match-addr']/self::INPUT"));
-                            Thread.sleep(2000);
+                            Thread.sleep(1000);
+                            WebElement checkoutForm = (new WebDriverWait(driver, 15).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//INPUT[@class='chk-pay-match-addr']/self::INPUT"))));
+                            //WebElement checkoutForm = driver.findElement(By.xpath("//INPUT[@class='chk-pay-match-addr']/self::INPUT"));
+                            //Thread.sleep(500);
                             checkoutForm.click();
+                            Thread.sleep(1000);
                             contTarjeta++;
-
+                            
+                            
+                           
                             /*
                                 Refrezcar la pagina después de 9 tarjetas
                              */
                             if (contTarjeta > 9) {
                                 driver.navigate().refresh();
                                 System.out.println("----------Refrezcando navegador----------");
-                                Thread.sleep(3000);
+                                Thread.sleep(2000);
                                 contTarjeta = 0;
                             }
-
+                            
                         } else {
+                            //Thread.sleep(2000);   
+                            
+                            driver.findElement(By.className("brdialog-win")).isDisplayed();                    
+                            //Thread.sleep(2000);                            
+                            driver.findElement(By.xpath(("//SPAN[text()='Your order has been placed.'])[1]/../../..//DIV[@id='brmerchantLogo']")));
+                            driver.findElement(By.className("brdialog-head"));
+                            //WebElement comprapasa = (new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated(By.className("sb-orange"))));
                             Clip sonido = AudioSystem.getClip();
                             File a = new File("sonido.wav");
                             sonido.open(AudioSystem.getAudioInputStream(a));
                             sonido.start();
-                            Thread.sleep(1000);
+                            //Thread.sleep(1000);
                             sonido.start();
                             JTextArea ta = new JTextArea(5, 5);
                             ta.setText(numeroBean);
                             JOptionPane.showMessageDialog(null, ta, "LIVE", JOptionPane.INFORMATION_MESSAGE);
-                            System.out.println(" ☜(ˆ▿ˆc) ROMERO CHECKER LIVE " + numeroBean +  numeroMes + numeroAnio );
-                            mostrarTabla("😎 Rise2UPChckr" + numeroBean + numeroMes + numeroAnio + " LIVE 😎");
+                            mostrarTabla("😎 " + numeroBean + "|" + numeroMes + "|" + numeroAnio + " LIVE 😎");
+                            System.out.println("  MoonTeam LIVE " + numeroBean +  numeroMes + numeroAnio + "live");
+                            //mostrarTabla("😎 Rise2UPChckr" + numeroBean + numeroMes + numeroAnio + " LIVE 😎");
                             driver.manage().deleteAllCookies();
                             Thread.sleep(4000);
                             /*
@@ -347,70 +371,86 @@ public class formFichero extends javax.swing.JFrame {
     /*
         Metodo que ejecuta todos los componentes principales de la pagina
      */
+        
     private static void runAuto(WebDriver driver) {
-        try {
-            driver.get("https://www.shoes.com/johnston-murphy-cotton-ribbed-otc/614418/1262212");
+        try { //non-static variable cannot be referenced from static context
+            
+            
+            driver.get("https://www.shoes.com/dearfoams-pile-bootie-slipper-with-fairisle-trim/788211/1686837");
+            
+           
             //driver.get("https://www.shoes.com");
+            
             /*
                     Botón agregar compra
              */
-            WebElement button = driver.findElement(By.id("add-cart"));
+            
+            Thread.sleep(1000);
+            WebElement buttonTalla = (new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated(By.id("size_2_1"))));
+            //WebElement buttonTalla = driver.findElement (By.id("size_2_1"));
+            buttonTalla.click();
+            WebElement button = (new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated(By.id("add-cart"))));
+            //WebElement button = driver.findElement(By.id("add-cart"));
             button.click();
-
+                 
+           
             /*
                     Botón checkout
              */
-            Thread.sleep(3000);
+            //Thread.sleep(3000);
             //WebElement buttonCheckout = driver.findElement(By.className("crt-proceed-btn"));
-            WebElement buttonCheckout = driver.findElement(By.xpath("//BUTTON[@class='sb-button-1 sb-button-1--primary crt-proceed-btn'][text()='Checkout'][text()='Checkout']/self::BUTTON"));
-
-            Thread.sleep(3000);
+            WebElement buttonCheckout = (new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//BUTTON[@class='sb-button-1 sb-button-1--primary crt-proceed-btn'][text()='Checkout'][text()='Checkout']/self::BUTTON"))));
+            //WebElement buttonCheckout = driver.findElement(By.xpath("//BUTTON[@class='sb-button-1 sb-button-1--primary crt-proceed-btn'][text()='Checkout'][text()='Checkout']/self::BUTTON"));
             buttonCheckout.click();
+            
             /*
                     Formulario de email
              */
-            Thread.sleep(4000);
-            WebElement email = driver.findElement(By.name("guestEmail"));
+            WebElement email = (new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated(By.name("guestEmail"))));
+            //WebElement email = driver.findElement(By.name("guestEmail"));
             Random aleatorio = new Random();
-            int intAletorio = aleatorio.nextInt(10000);
-            email.sendKeys("jamesdation" + intAletorio + "@gmail.com");
-            Thread.sleep(3000);
+            int intAletorio = aleatorio.nextInt(100000);
+            email.sendKeys("kevinmit"  + intAletorio + "@outlook.es");
+            //Thread.sleep(3000);
             email.sendKeys(Keys.ENTER);
             /*
                     Formulario de registro de datos
              */
-            Thread.sleep(2000);
-            WebElement firsName = driver.findElement(By.name("firstName"));
-            firsName.sendKeys("Mister");
-
-            WebElement lastName = driver.findElement(By.name("lastName"));
-            lastName.sendKeys("Donation");
+            //Thread.sleep(1000); 
+            WebElement firsName = (new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated(By.name("firstName"))));
+            //WebElement firsName = driver.findElement(By.name("firstName"));
+            firsName.sendKeys("Jhonny");
+            
+            //WebElement lastName = driver.findElement(By.name("lastName"));
+            WebElement lastName = (new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated(By.name("lastName"))));
+            lastName.sendKeys("Swanson");
             //String[] direcciones = {"ninguna", "ninguna", "ninguna", "ninguna", "ninguna"};
             //int direccion = aleatorio.nextInt(10);
-            WebElement address1 = driver.findElement(By.name("address1"));
-            address1.sendKeys("ninguna");
+            WebElement address1 = (new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated(By.name("address1"))));
+            //WebElement address1 = driver.findElement(By.name("address1"));
+            address1.sendKeys("none");
             //address1.sendKeys(direcciones[direccion]);
-
-            WebElement address2 = driver.findElement(By.name("address2"));
-            address2.sendKeys("ninguna");
+            WebElement address2 = (new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated(By.name("address2"))));
+            //WebElement address2 = driver.findElement(By.name("address2"));
+            address2.sendKeys("none");
             //address2.sendKeys(direcciones[direccion]);
-
-            WebElement city = driver.findElement(By.name("city"));
-            city.sendKeys("San diego");
-
-            WebElement stateProvince = driver.findElement(By.name("stateProvince"));
+            WebElement city = (new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated(By.name("city"))));
+            //WebElement city = driver.findElement(By.name("city"));
+            city.sendKeys("New York");
+            WebElement stateProvince = (new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated(By.name("stateProvince"))));
+            //WebElement stateProvince = driver.findElement(By.name("stateProvince"));
             Select selectState = new Select(stateProvince);
-            selectState.selectByValue("CA");
-
-            WebElement postalCode = driver.findElement(By.name("postalCode"));
-            postalCode.sendKeys("90001");
+            selectState.selectByValue("NY");
+            WebElement postalCode = (new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated(By.name("postalCode"))));  
+            //WebElement postalCode = driver.findElement(By.name("postalCode"));
+            postalCode.sendKeys("10001");
 
             WebElement phoneNumber = driver.findElement(By.name("phoneNumber"));
             
-            phoneNumber.sendKeys("93180"+ intAletorio +"9381");
+            phoneNumber.sendKeys("174953"+ intAletorio +"380");
 
             phoneNumber.sendKeys(Keys.ENTER);
-            Thread.sleep(3000);
+            Thread.sleep(2000);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Excepcion dentro de los parametros formulario " + e.getMessage());
             JOptionPane.showMessageDialog(null, e.getLocalizedMessage());
@@ -432,7 +472,7 @@ public class formFichero extends javax.swing.JFrame {
     System.exit(0);    
 // TODO add your handling code here:
 
-        Runtime.getRuntime().exit(0);  //esto cierra la aplicacion
+        //Runtime.getRuntime().exit(0);  //esto cierra la aplicacion
     }//GEN-LAST:event_btnRun1ActionPerformed
 
     /**
@@ -471,12 +511,14 @@ public class formFichero extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel CONTADOR;
+    private javax.swing.JLabel EVENTOS;
+    private javax.swing.JTextArea avance;
     private javax.swing.JButton btnRun;
     private javax.swing.JButton btnRun1;
     private javax.swing.JButton btnSeleccionar;
     private javax.swing.JLabel jLabel;
-    private javax.swing.JLabel jLabelNumeroTarjetas;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableTarjeta;
     // End of variables declaration//GEN-END:variables
