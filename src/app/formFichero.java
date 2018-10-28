@@ -523,3 +523,8 @@ public class formFichero extends javax.swing.JFrame {
     private javax.swing.JTable jTableTarjeta;
     // End of variables declaration//GEN-END:variables
 }
+
+/**
+ *
+ * @author Michael García A
+ */
